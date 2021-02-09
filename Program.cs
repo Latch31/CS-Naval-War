@@ -6,6 +6,7 @@ namespace CS_Naval_War
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("test");
         }
     }
 }
