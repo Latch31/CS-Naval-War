@@ -26,6 +26,8 @@ namespace CS_Naval_War
             this.placeBoat("Contre Torpilleur", 3);
             this.placeBoat("Contre Torpilleur", 3);
             this.placeBoat("Torpilleur", 2);
+
+            bInitialise = true;
         }
 
         public void printTab()
