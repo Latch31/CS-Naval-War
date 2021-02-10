@@ -22,7 +22,11 @@ namespace CS_Naval_War
         public void initialise()
         {
             Console.WriteLine("Place your boat");
-            this.planeCarrier();
+            this.placeBoat("Plane Carrier", 5);
+            this.placeBoat("Crioseur", 4);
+            this.placeBoat("Contre Torpilleur", 3);
+            this.placeBoat("Contre Torpilleur", 3);
+            this.placeBoat("Torpilleur", 2);
         }
 
         public void printTab()
@@ -47,7 +51,7 @@ namespace CS_Naval_War
         }
 
         //Todo
-        private void planeCarrier()
+        private void placeBoat(String bName, int size)
         {
             String entry = "";
             bool goodPlacement = false;
@@ -57,8 +61,8 @@ namespace CS_Naval_War
             do
             {
                 this.printTab();
-                Console.WriteLine("Plane Carrier ( 5 case )");
-                Console.WriteLine("where ? first number = horizontal | exemple : 42");
+                Console.WriteLine("{0} : size = {1}", bName, size);
+                Console.WriteLine("where in the board ? \nfirst number = horizontal | exemple : 42");
 
                 entry = Console.ReadLine();
                 if (entry.Length == 2) // check if the entry comporte 2 caracter
@@ -69,21 +73,30 @@ namespace CS_Naval_War
                         // check if the point is free or already attribute
                         if (this.boardTab[entry[0] - 48, entry[1] - 48 ] == '.')
                         {
-                            y = entry[0] - 48;
-                            x = entry[1] - 48;
+                            x = entry[0] - 48;
+                            y = entry[1] - 48;
 
-                            Console.WriteLine("Quel Orrientation ?");
-                            Console.WriteLine("Choose between : N | S | E | W ");
-
-                            entry = Console.ReadLine();
-                            if (entry[0] == 'N' ||  entry[0] == 'S' ||  entry[0] == 'E' ||  entry[0] == 'W')
+                            if ( size > 1)
                             {
-                                goodPlacement = this.placement(x, y,5,  entry[0]);
+
+                                Console.WriteLine("Quel Orrientation ?");
+                                Console.WriteLine("Choose between : N | S | E | W ");
+
+                                entry = Console.ReadLine();
+                                if (entry[0] == 'N' ||  entry[0] == 'S' ||  entry[0] == 'E' ||  entry[0] == 'W')
+                                {
+                                    goodPlacement = this.placement(x, y, size, entry[0]);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Error in selection, please retry");
+                                }
                             }
                             else
                             {
-                                Console.WriteLine("Error in selection, please retry");
+                                goodPlacement = this.placement(x, y);
                             }
+                            
                         }
                         else
                         {
@@ -94,7 +107,7 @@ namespace CS_Naval_War
                     }
                     else
                     {
-                        Console.WriteLine("Error in selection, please retry");
+                        Console.WriteLine("Error Entry not on board, please retry");
                         goodPlacement = false;
                     }
                 }
@@ -111,11 +124,11 @@ namespace CS_Naval_War
                 //check north case
                 if ( y >= size - 1)
                 {
-                    for ( int i = 0; i < 5; i++)
+                    for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[x-i, y] == '.')
+                        if ( this.boardTab[y-i, x] == '.')
                         {                                                
-                            this.boardTab[x-i, y] = 'O';
+                            this.boardTab[y-i, x] = 'O';
                         }
                         else
                         {
@@ -133,11 +146,11 @@ namespace CS_Naval_War
                 //check South case
                 if ( y <= size - 1)
                 {
-                    for ( int i = 0; i < 5; i++)
+                    for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[x+i, y] == '.')
+                        if ( this.boardTab[y+i, x] == '.')
                         {                                                
-                            this.boardTab[x+i, y] = 'O';
+                            this.boardTab[y+i, x] = 'O';
                         }
                         else
                         {
@@ -155,11 +168,11 @@ namespace CS_Naval_War
                 //check East case
                 if ( x <= size - 1)
                 {
-                    for ( int i = 0; i < 5; i++)
+                    for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[x, y+i] == '.')
+                        if ( this.boardTab[y, x+i] == '.')
                         {                                                
-                            this.boardTab[x, y+i] = 'O';
+                            this.boardTab[y, x+i] = 'O';
                         }
                         else
                         {
@@ -177,11 +190,11 @@ namespace CS_Naval_War
                 //check West case
                 if ( x >= size - 1)
                 {
-                    for ( int i = 0; i < 5; i++)
+                    for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[x, y-i] == '.')
+                        if ( this.boardTab[y, x-i] == '.')
                         {                                                
-                            this.boardTab[x, y-i] = 'O';
+                            this.boardTab[y, x-i] = 'O';
                         }
                         else
                         {
@@ -204,6 +217,19 @@ namespace CS_Naval_War
                 Console.WriteLine("Error no space availble");
             }
             return goodPlacement;
+        }
+        private bool placement(int x, int y)
+        {
+            if ( this.boardTab[x, y] == '.' )
+            {
+                this.boardTab[x, y] = 'O';
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
     }
 }
