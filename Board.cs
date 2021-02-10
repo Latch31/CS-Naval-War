@@ -18,7 +18,6 @@ namespace CS_Naval_War
             }
         }
 
-        //Todo
         public void initialise()
         {
             Console.WriteLine("Place your boat");
@@ -50,7 +49,6 @@ namespace CS_Naval_War
             }
         }
 
-        //Todo
         private void placeBoat(String bName, int size)
         {
             String entry = "";
@@ -78,11 +76,10 @@ namespace CS_Naval_War
 
                             if ( size > 1)
                             {
-
                                 Console.WriteLine("Quel Orrientation ?");
                                 Console.WriteLine("Choose between : N | S | E | W ");
-
                                 entry = Console.ReadLine();
+
                                 if (entry[0] == 'N' ||  entry[0] == 'S' ||  entry[0] == 'E' ||  entry[0] == 'W')
                                 {
                                     goodPlacement = this.placement(x, y, size, entry[0]);
@@ -114,7 +111,6 @@ namespace CS_Naval_War
             }while(!goodPlacement);
         }
 
-        // maybe add length of the boat in parameter
         private bool placement(int x, int y, int size, char card)
         {   
             bool goodPlacement = true;
@@ -243,7 +239,6 @@ namespace CS_Naval_War
             {
                 return false;
             }
-            
         }
     }
 }
