@@ -124,15 +124,20 @@ namespace CS_Naval_War
                 //check north case
                 if ( y >= size - 1)
                 {
+                    // check if all area is unused
                     for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[y-i, x] == '.')
+                        if ( this.boardTab[y-i, x] != '.')
                         {                                                
-                            this.boardTab[y-i, x] = 'O';
+                           goodPlacement = false;
                         }
-                        else
+                    }
+                    // if all area is unused we place the boat
+                    if ( goodPlacement )
+                    {
+                        for ( int i = 0; i < size; i++)
                         {
-                            goodPlacement = false;
+                            this.boardTab[y-i, x] = 'O';
                         }
                     }
                 }
@@ -148,13 +153,16 @@ namespace CS_Naval_War
                 {
                     for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[y+i, x] == '.')
+                        if ( this.boardTab[y+i, x] != '.')
                         {                                                
-                            this.boardTab[y+i, x] = 'O';
+                           goodPlacement = false;
                         }
-                        else
+                    }
+                    if ( goodPlacement )
+                    {
+                        for ( int i = 0; i < size; i++)
                         {
-                            goodPlacement = false;
+                            this.boardTab[y+i, x] = 'O';
                         }
                     }
                 }
@@ -170,13 +178,16 @@ namespace CS_Naval_War
                 {
                     for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[y, x+i] == '.')
-                        {                                                
-                            this.boardTab[y, x+i] = 'O';
-                        }
-                        else
-                        {
+                        if ( this.boardTab[y, x+i] != '.')
+                        {           
                             goodPlacement = false;
+                        }
+                    }
+                    if ( goodPlacement )
+                    {
+                        for ( int i = 0; i < size; i++)
+                        {
+                                this.boardTab[y, x+i] = 'O';
                         }
                     }
                 }
@@ -192,13 +203,16 @@ namespace CS_Naval_War
                 {
                     for ( int i = 0; i < size; i++)
                     {
-                        if ( this.boardTab[y, x-i] == '.')
-                        {                                                
-                            this.boardTab[y, x-i] = 'O';
-                        }
-                        else
-                        {
+                        if ( this.boardTab[y, x-i] != '.')
+                        {           
                             goodPlacement = false;
+                        }
+                    }
+                    if ( goodPlacement )
+                    {
+                        for ( int i = 0; i < size; i++)
+                        {
+                                this.boardTab[y, x-i] = 'O';
                         }
                     }
                 }
