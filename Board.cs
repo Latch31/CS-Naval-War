@@ -58,7 +58,7 @@ namespace CS_Naval_War
             {
                 this.printTab();
                 Console.WriteLine("Plane Carrier ( 5 case )");
-                Console.WriteLine("where ? first number = left column | exemple : 42");
+                Console.WriteLine("where ? first number = horizontal | exemple : 42");
 
                 entry = Console.ReadLine();
                 if (entry.Length == 2) // check if the entry comporte 2 caracter
@@ -78,7 +78,7 @@ namespace CS_Naval_War
                             entry = Console.ReadLine();
                             if (entry[0] == 'N' ||  entry[0] == 'S' ||  entry[0] == 'E' ||  entry[0] == 'W')
                             {
-                                goodPlacement = this.placement(x, y, entry[0]);
+                                goodPlacement = this.placement(x, y,5,  entry[0]);
                             }
                             else
                             {
@@ -102,14 +102,14 @@ namespace CS_Naval_War
         }
 
         // maybe add length of the boat in parameter
-        private bool placement(int x, int y, char card)
+        private bool placement(int x, int y, int size, char card)
         {   
             bool goodPlacement = true;
             switch ( card )
             {
                 case 'N' :
                 //check north case
-                if ( x >= 4)
+                if ( y >= size - 1)
                 {
                     for ( int i = 0; i < 5; i++)
                     {
@@ -131,7 +131,7 @@ namespace CS_Naval_War
                                     
                 case 'S' :
                 //check South case
-                if ( x <= 5)
+                if ( y <= size - 1)
                 {
                     for ( int i = 0; i < 5; i++)
                     {
@@ -153,7 +153,7 @@ namespace CS_Naval_War
                                     
                 case 'E' :
                 //check East case
-                if ( y <= 5)
+                if ( x <= size - 1)
                 {
                     for ( int i = 0; i < 5; i++)
                     {
@@ -175,7 +175,7 @@ namespace CS_Naval_War
 
                 case 'W' :
                 //check West case
-                if ( y >= 4)
+                if ( x >= size - 1)
                 {
                     for ( int i = 0; i < 5; i++)
                     {
