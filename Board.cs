@@ -10,6 +10,11 @@ namespace CS_Naval_War
         {
             get { return bInitialise; }
         }
+        private String name;
+        public String pName
+        {
+            get { return name; }
+        }
 
         public Board()
         {
@@ -24,6 +29,9 @@ namespace CS_Naval_War
 
         public void initialise()
         {
+            Console.WriteLine("Please enter the name for the Player");
+            this.name = Console.ReadLine();
+
             Console.WriteLine("Place your boat");
             this.placeBoat("Plane Carrier", 5);
             this.placeBoat("Crioseur", 4);
@@ -245,6 +253,37 @@ namespace CS_Naval_War
             {
                 return false;
             }
+        }
+        //Manage the shot system
+        public bool getShot(int x, int y)
+        {
+            Char data;
+            data = this.boardTab[y, x];
+
+            if ( data == 'O')
+            {
+                this.boardTab[y, x] = 'X';
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool checkAlive()
+        {
+            for ( int x = 0; x < 10; x++)
+            {
+                for ( int y = 0; y < 10; y++)
+                {
+                    if ( this.boardTab[x, y] == 'O')
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

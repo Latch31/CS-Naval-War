@@ -6,41 +6,73 @@ namespace CS_Naval_War
     {
         public void startGame(Board p1, Board p2)
         {
-            String p1Name; // just little personation for player
-            String p2Name;
             bool win = false; // know if someone win
-            String winner;    // name of the winner
             bool turn = false;  // name of the player to play  
             if ( !p1.init || !p2.init )
             {
                 Console.WriteLine(" one of the 2 player don't place his ship !");
             }
-
-            Console.WriteLine("Please enter the name for Player 1");
-            p1Name = Console.ReadLine();
-            Console.WriteLine("Please enter the name for Player 2");
-            p2Name = Console.ReadLine();
-
-            Console.WriteLine("------ Game Start ------");
-
-            while (!win)
+            else
             {
-                turn = !turn;
+                Console.WriteLine("------ Game Start ------");
+                while (!win)
+                {
+                    turn = !turn;
+                    if ( turn )
+                    {
+                        win = playturn(p1, p2);
+                    }
+                    else
+                    {
+                        win = playturn(p2, p1);
+                    }
+                }
                 if ( turn )
                 {
-                    playturn(p1);
+                    Console.WriteLine("{0} WIN !!!", p1.pName);
                 }
                 else
                 {
-                    playturn(p1);
+                    Console.WriteLine("{0} WIN !!!", p2.pName);
                 }
             }
         }
 
-
-        private void playturn(Board player)
+        private bool playturn(Board pTurn, Board pAdv)
         {
+            Boolean touch = false;
+            Boolean shotAppend = false;
+            
+            Console.WriteLine("{0} is your turn !", pTurn.pName);
+            do
+            {
+            Console.WriteLine("Choose where to shot");
+            String entry = Console.ReadLine();
+                if (entry.Length == 2) // check if the entry comporte 2 caracter
+                {
+                    //check the interval value of the entry
+                    if ((entry[0] - 48) >= 0 || (entry[0] - 48) <= 10 || (entry[1] - 48) >= 0 || (entry[1] - 48) <= 10 ) 
+                    {
+                        touch = pAdv.getShot(entry[0], entry[1]);
+                        shotAppend = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error Entry not on board, please retry");
+                    }
+                }
+            }while(!shotAppend);
 
+            if ( touch )
+            {
+                Console.WriteLine("Touche !!!");
+                return pAdv.checkAlive();
+            }
+            else
+            {
+                Console.WriteLine("Miss");
+                return false;
+            }
         }
     }
 }
