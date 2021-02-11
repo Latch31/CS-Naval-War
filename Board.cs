@@ -132,7 +132,7 @@ namespace CS_Naval_War
             {
                 case 'N' :
                 //check north case
-                if ( y-size-1 >= 0)
+                if ( y-(size-1) >= 0)
                 {
                     // check if all area is unused
                     for ( int i = 0; i < size; i++)
@@ -159,7 +159,7 @@ namespace CS_Naval_War
                                     
                 case 'S' :
                 //check South case
-                if ( y+size-1 <= 9)
+                if ( y+(size-1) <= 9)
                 {
                     for ( int i = 0; i < size; i++)
                     {
@@ -184,7 +184,7 @@ namespace CS_Naval_War
                                     
                 case 'E' :
                 //check East case
-                if ( x+size-1 <= 9)
+                if ( x+(size-1) <= 9)
                 {
                     for ( int i = 0; i < size; i++)
                     {
@@ -209,7 +209,7 @@ namespace CS_Naval_War
 
                 case 'W' :
                 //check West case
-                if ( x-size-1 >= 0)
+                if ( x-(size-1) >= 0)
                 {
                     for ( int i = 0; i < size; i++)
                     {
@@ -279,11 +279,11 @@ namespace CS_Naval_War
                 {
                     if ( this.boardTab[x, y] == 'O')
                     {
-                        return true;
+                        return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
     }
 }

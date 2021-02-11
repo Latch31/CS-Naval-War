@@ -53,7 +53,9 @@ namespace CS_Naval_War
                     //check the interval value of the entry
                     if ((entry[0] - 48) >= 0 || (entry[0] - 48) <= 10 || (entry[1] - 48) >= 0 || (entry[1] - 48) <= 10 ) 
                     {
-                        touch = pAdv.getShot(entry[0], entry[1]);
+                        int x = entry[0] - 48;
+                        int y = entry[1] - 48;
+                        touch = pAdv.getShot(x, y);
                         shotAppend = true;
                     }
                     else
