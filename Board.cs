@@ -6,6 +6,10 @@ namespace CS_Naval_War
     {
         private Char[,] boardTab = new Char[10, 10];
         private bool bInitialise = false;
+        public bool init
+        {
+            get { return bInitialise; }
+        }
 
         public Board()
         {
