@@ -71,7 +71,7 @@ namespace CS_Naval_War
                     if ((entry[0] - 48) >= 0 || (entry[0] - 48) <= 10 || (entry[1] - 48) >= 0 || (entry[1] - 48) <= 10 ) 
                     {
                         // check if the point is free or already attribute
-                        if (this.boardTab[entry[0] - 48, entry[1] - 48 ] == '.')
+                        if (this.boardTab[entry[1] - 48, entry[0] - 48 ] == '.')
                         {
                             x = entry[0] - 48;
                             y = entry[1] - 48;
@@ -120,7 +120,7 @@ namespace CS_Naval_War
             {
                 case 'N' :
                 //check north case
-                if ( y >= size - 1)
+                if ( y-size-1 >= 0)
                 {
                     // check if all area is unused
                     for ( int i = 0; i < size; i++)
@@ -147,7 +147,7 @@ namespace CS_Naval_War
                                     
                 case 'S' :
                 //check South case
-                if ( y <= size - 1)
+                if ( y+size-1 <= 9)
                 {
                     for ( int i = 0; i < size; i++)
                     {
@@ -172,7 +172,7 @@ namespace CS_Naval_War
                                     
                 case 'E' :
                 //check East case
-                if ( x <= size - 1)
+                if ( x+size-1 <= 9)
                 {
                     for ( int i = 0; i < size; i++)
                     {
@@ -197,7 +197,7 @@ namespace CS_Naval_War
 
                 case 'W' :
                 //check West case
-                if ( x >= size - 1)
+                if ( x-size-1 >= 0)
                 {
                     for ( int i = 0; i < size; i++)
                     {

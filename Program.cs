@@ -6,10 +6,9 @@ namespace CS_Naval_War
     {
         static void Main(string[] args)
         {
-            Board patate = new Board();
-            patate.printTab();
-            patate.initialise();
-            patate.printTab();
+            Board player1 = new Board();
+            player1.initialise();
+            player1.printTab();
         }
     }
 }
