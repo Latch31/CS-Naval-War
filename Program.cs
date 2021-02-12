@@ -9,11 +9,11 @@ namespace CS_Naval_War
             Console.Clear();
             Board player1 = new Board();
             Board player2 = new Board();
-            Play patate = new Play();
+            Play game = new Play();
             player1.initialise();
             player2.initialise();
 
-            patate.startGame(player1, player2);
+            game.startGame(player1, player2);
         }
     }
 }
