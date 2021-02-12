@@ -6,6 +6,7 @@ namespace CS_Naval_War
     {
         static void Main(string[] args)
         {
+            Console.Clear();
             Board player1 = new Board();
             Board player2 = new Board();
             Play patate = new Play();

@@ -29,12 +29,13 @@ namespace CS_Naval_War
 
         public void initialise()
         {
-            Console.WriteLine("Please enter the name for the Player");
+            Console.WriteLine("-- Please enter the name for the Player --");
             this.name = Console.ReadLine();
+            Console.Clear();
 
-            Console.WriteLine("Place your boat");
+            Console.WriteLine("Place your boat {0}", this.name);
             this.placeBoat("Plane Carrier", 5);
-            this.placeBoat("Crioseur", 4);
+            this.placeBoat("Croiseur", 4);
             this.placeBoat("Contre Torpilleur", 3);
             this.placeBoat("Contre Torpilleur", 3);
             this.placeBoat("Torpilleur", 2);
@@ -73,7 +74,7 @@ namespace CS_Naval_War
             do
             {
                 this.printTab();
-                Console.WriteLine("{0} : size = {1}", bName, size);
+                Console.WriteLine("\n{0} : size = {1}", bName, size);
                 Console.WriteLine("where in the board ? \nfirst number = horizontal | exemple : 42");
 
                 entry = Console.ReadLine();
@@ -90,7 +91,7 @@ namespace CS_Naval_War
 
                             if ( size > 1)
                             {
-                                Console.WriteLine("Quel Orrientation ?");
+                                Console.WriteLine("What direction ?");
                                 Console.WriteLine("Choose between : N | S | E | W ");
                                 entry = Console.ReadLine();
 
@@ -100,7 +101,7 @@ namespace CS_Naval_War
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Error in selection, please retry");
+                                    Console.WriteLine("/!\\ Error in selection, please retry /!\\");
                                 }
                             }
                             else
@@ -111,17 +112,18 @@ namespace CS_Naval_War
                         }
                         else
                         {
-                            Console.WriteLine("Error, position already use");
+                            Console.WriteLine("/!\\ Error, position already use /!\\");
                             goodPlacement = false;
                         }
                         
                     }
                     else
                     {
-                        Console.WriteLine("Error Entry not on board, please retry");
+                        Console.WriteLine("/!\\ Error Entry not on board, please retry /!\\");
                         goodPlacement = false;
                     }
                 }
+                Console.Clear();
             }while(!goodPlacement);
         }
 
@@ -238,7 +240,7 @@ namespace CS_Naval_War
             }
             if (!goodPlacement)
             {
-                Console.WriteLine("Error no space availble");
+                Console.WriteLine("/!\\ Error no space availble /!\\");
             }
             return goodPlacement;
         }

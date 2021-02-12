@@ -26,15 +26,22 @@ namespace CS_Naval_War
                     {
                         win = playturn(p2, p1);
                     }
+                    if (!win)
+                    {
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
                 }
                 if ( turn )
                 {
-                    Console.WriteLine("{0} WIN !!!", p1.pName);
+                    Console.WriteLine("--- {0} WIN !!! ---", p1.pName);
                 }
                 else
                 {
                     Console.WriteLine("{0} WIN !!!", p2.pName);
                 }
+                Console.WriteLine("------ Game Over ------");
+                
             }
         }
 
