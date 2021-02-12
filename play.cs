@@ -38,7 +38,7 @@ namespace CS_Naval_War
                 }
                 else
                 {
-                    Console.WriteLine("{0} WIN !!!", p2.pName);
+                    Console.WriteLine("--- {0} WIN !!! ---", p2.pName);
                 }
                 Console.WriteLine("------ Game Over ------");
                 
@@ -50,11 +50,13 @@ namespace CS_Naval_War
             Boolean touch = false;
             Boolean shotAppend = false;
             
-            Console.WriteLine("{0} is your turn !", pTurn.pName);
+            Console.WriteLine("- {0} is your turn ! -", pTurn.pName);
             do
             {
-            Console.WriteLine("Choose where to shot");
-            String entry = Console.ReadLine();
+                Console.WriteLine("Where you already shoot");
+                pTurn.printTab(pTurn.bShoot);
+                Console.WriteLine("Choose where to shot");
+                String entry = Console.ReadLine();
                 if (entry.Length == 2) // check if the entry comporte 2 caracter
                 {
                     //check the interval value of the entry
@@ -63,6 +65,7 @@ namespace CS_Naval_War
                         int x = entry[0] - 48;
                         int y = entry[1] - 48;
                         touch = pAdv.getShot(x, y);
+                        pTurn.shoot(x, y, touch);
                         shotAppend = true;
                     }
                     else

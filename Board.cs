@@ -5,6 +5,11 @@ namespace CS_Naval_War
     public class Board
     {
         private Char[,] boardTab = new Char[10, 10];
+        private Char[,] boardShoot = new char[10, 10];
+        public Char[,] bShoot
+        {
+            get { return this.boardShoot; }
+        }
         private bool bInitialise = false;
         public bool init
         {
@@ -23,6 +28,7 @@ namespace CS_Naval_War
                 for (int y = 0; y < 10; y++)
                 {
                     boardTab[i, y] = '.';
+                    boardShoot[i, y] = '.';
                 }
             }
         }
@@ -43,23 +49,23 @@ namespace CS_Naval_War
             bInitialise = true;
         }
 
-        public void printTab()
+        public void printTab(Char[,] printTab)
         {
             Console.WriteLine(" \\ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
             for ( int i = 0; i < 10; i++)
             {
                 Console.WriteLine(" {0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} | {9} | {10} |",
                 i,
-                this.boardTab[i, 0],
-                this.boardTab[i, 1],
-                this.boardTab[i, 2],
-                this.boardTab[i, 3],
-                this.boardTab[i, 4],
-                this.boardTab[i, 5],
-                this.boardTab[i, 6],
-                this.boardTab[i, 7],
-                this.boardTab[i, 8],
-                this.boardTab[i, 9]
+                printTab[i, 0],
+                printTab[i, 1],
+                printTab[i, 2],
+                printTab[i, 3],
+                printTab[i, 4],
+                printTab[i, 5],
+                printTab[i, 6],
+                printTab[i, 7],
+                printTab[i, 8],
+                printTab[i, 9]
                 );
             }
         }
@@ -73,7 +79,7 @@ namespace CS_Naval_War
             
             do
             {
-                this.printTab();
+                this.printTab( this.boardTab);
                 Console.WriteLine("\n{0} : size = {1}", bName, size);
                 Console.WriteLine("where in the board ? \nfirst number = horizontal | exemple : 42");
 
@@ -101,6 +107,7 @@ namespace CS_Naval_War
                                 }
                                 else
                                 {
+                                    Console.Clear();
                                     Console.WriteLine("/!\\ Error in selection, please retry /!\\");
                                 }
                             }
@@ -112,18 +119,18 @@ namespace CS_Naval_War
                         }
                         else
                         {
+                            Console.Clear();
                             Console.WriteLine("/!\\ Error, position already use /!\\");
                             goodPlacement = false;
                         }
-                        
                     }
                     else
                     {
+                        Console.Clear();
                         Console.WriteLine("/!\\ Error Entry not on board, please retry /!\\");
                         goodPlacement = false;
                     }
                 }
-                Console.Clear();
             }while(!goodPlacement);
         }
 
@@ -240,6 +247,7 @@ namespace CS_Naval_War
             }
             if (!goodPlacement)
             {
+                Console.Clear();
                 Console.WriteLine("/!\\ Error no space availble /!\\");
             }
             return goodPlacement;
@@ -254,6 +262,18 @@ namespace CS_Naval_War
             else
             {
                 return false;
+            }
+        }
+
+        public void shoot(int x, int y, bool touch)
+        {
+            if ( touch )
+            {
+                this.boardShoot[y, x] = 'X';
+            }
+            else if (this.boardShoot[y,x] != 'X')
+            {
+                this.boardShoot[y,x] = 'O';
             }
         }
         //Manage the shot system
