@@ -5,6 +5,10 @@ namespace CS_Naval_War
     public class Board
     {
         private Char[,] boardTab = new Char[10, 10];
+        public Char[,] bTab
+        {
+            get { return this.boardTab; }
+        }
         private Char[,] boardShoot = new char[10, 10];
         public Char[,] bShoot
         {

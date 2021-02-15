@@ -24,7 +24,14 @@ namespace Naval_War_Interface_App
         public MainWindow()
         {
             InitializeComponent();
-            Board patate = new Board();
+            Board player1 = new Board();
+
+            DTG.DataContext = player1.bTab;
+        }
+
+        private void buttonPress(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
