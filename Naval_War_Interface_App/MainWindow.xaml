@@ -162,9 +162,6 @@
         <Label Content="8" HorizontalAlignment="Left" Margin="0,347,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
         <Label Content="9" HorizontalAlignment="Left" Margin="0,384,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
         <Label Content="4" HorizontalAlignment="Left" Margin="0,187,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
-        <Label Content="Sample Control Text" HorizontalAlignment="Left" Margin="564,109,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="564,151,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="user_Send" Content="Send" HorizontalAlignment="Left" Margin="607,197,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

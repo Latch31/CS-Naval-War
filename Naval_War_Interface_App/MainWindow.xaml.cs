@@ -21,17 +21,34 @@ namespace Naval_War_Interface_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool placement;
         public MainWindow()
         {
             InitializeComponent();
+            placement = true;
             Board player1 = new Board();
 
-            DTG.DataContext = player1.bTab;
         }
 
         private void buttonPress(object sender, RoutedEventArgs e)
         {
+            Button test = (Button)sender;
+            String bName = test.Name;
 
+            int x = bName[2] - 48;
+            int y = bName[3] - 48;
+
+            // Placement situation 
+            if ( placement )
+            {
+
+            }
+            // Shoot situation
+            else
+            
+            {
+
+            }
         }
     }
 }
