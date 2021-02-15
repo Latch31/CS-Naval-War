@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CS_Naval_War;
 
 namespace Naval_War_Interface_App
 {
@@ -23,6 +24,7 @@ namespace Naval_War_Interface_App
         public MainWindow()
         {
             InitializeComponent();
+            Board patate = new Board();
         }
     }
 }
