@@ -27,6 +27,33 @@ namespace Naval_War_Interface_App
             InitializeComponent();
             placement = true;
             Board player1 = new Board();
+            Board player2 = new Board();
+            bool player = false; // false = player 1; true = player2
+            String[,] boatList = new string[5, 2];
+
+            boatInitialiseTab(boatList);
+
+            textblock_pop dialog;
+
+            //Player 1 Initialization
+            do
+            {
+                dialog = new textblock_pop();
+                if (dialog.ShowDialog() == true)
+                {
+                    player1.setPlayerName(dialog.ResponseText);
+                }
+            } while (dialog.DialogResult != true);
+
+            //Player 2 Initialization
+            do
+            {
+                dialog = new textblock_pop();
+                if (dialog.ShowDialog() == true)
+                {
+                    player2.setPlayerName(dialog.ResponseText);
+                }
+            } while (dialog.DialogResult != true);
 
         }
 
@@ -50,5 +77,24 @@ namespace Naval_War_Interface_App
 
             }
         }
+
+        static public void boatInitialiseTab(String[,] pBoarList)
+        {
+            pBoarList[0, 0] = "Plane Carrier";
+            pBoarList[0, 1] = "5";
+
+            pBoarList[1, 0] = "Croiseur";
+            pBoarList[1, 1] = "4";
+
+            pBoarList[2, 0] = "Contre Torpilleur";
+            pBoarList[2, 1] = "3";
+
+            pBoarList[3, 0] = "Contre Torpilleur";
+            pBoarList[3, 1] = "3";
+
+            pBoarList[4, 0] = "Torpilleur";
+            pBoarList[4, 1] = "2";
+        }
+
     }
 }

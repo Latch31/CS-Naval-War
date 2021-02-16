@@ -26,7 +26,7 @@ namespace CS_Naval_War
             }
             player1.bInitialise = true;
             
-            // Name for the player 1
+            // Name for the player 2
             Console.WriteLine("-- Please enter the name for the Player 2--");
             name = Console.ReadLine();
             player2.setPlayerName(name);
