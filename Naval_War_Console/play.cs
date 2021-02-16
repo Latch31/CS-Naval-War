@@ -8,7 +8,7 @@ namespace CS_Naval_War
         {
             bool win = false; // know if someone win
             bool turn = false;  // name of the player to play  
-            if ( !p1.init || !p2.init )
+            if ( !p1.bInitialise || !p2.bInitialise )
             {
                 Console.WriteLine(" one of the 2 player don't place his ship !");
             }
