@@ -13,54 +13,60 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CS_Naval_War;
+using System.Collections;
 
 namespace Naval_War_Interface_App
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
-        public static bool placement;
+        public static bool placement = true;
+        public static bool player = false; // false = player 1; true = player2
+        public static Stack boatP1 = new Stack();
+        public static Stack boatP2 = new Stack();
         public MainWindow()
         {
             InitializeComponent();
-            placement = true;
             Board player1 = new Board();
             Board player2 = new Board();
-            bool player = false; // false = player 1; true = player2
             String[,] boatList = new string[5, 2];
 
+            initStack(boatP1);
+            initStack(boatP2);
             boatInitialiseTab(boatList);
 
-            textblock_pop dialog;
+            textblock_pop name_choice;
 
             //Player 1 Initialization
             do
             {
-                dialog = new textblock_pop();
-                if (dialog.ShowDialog() == true)
+                name_choice = new textblock_pop();
+                if (name_choice.ShowDialog() == true)
                 {
-                    player1.setPlayerName(dialog.ResponseText);
+                    player1.setPlayerName(name_choice.ResponseText);
                 }
-            } while (dialog.DialogResult != true);
+            } while (name_choice.DialogResult != true);
 
             //Player 2 Initialization
             do
             {
-                dialog = new textblock_pop();
-                if (dialog.ShowDialog() == true)
+                name_choice = new textblock_pop();
+                if (name_choice.ShowDialog() == true)
                 {
-                    player2.setPlayerName(dialog.ResponseText);
+                    player2.setPlayerName(name_choice.ResponseText);
                 }
-            } while (dialog.DialogResult != true);
+            } while (name_choice.DialogResult != true);
 
         }
 
         private void buttonPress(object sender, RoutedEventArgs e)
         {
-            Button test = (Button)sender;
-            String bName = test.Name;
+            Button bPress = (Button)sender;
+            String bName = bPress.Name;
+            Char direction;
 
             int x = bName[2] - 48;
             int y = bName[3] - 48;
@@ -68,11 +74,20 @@ namespace Naval_War_Interface_App
             // Placement situation 
             if ( placement )
             {
-
+                if ( !player )
+                {
+                    String boatName = (String)boatP1.Pop();
+                    Char size = (Char)boatP1.Pop();
+                    // fenetre avec cardinalite
+                    Card_choice direc_pop = new Card_choice();
+                    if (direc_pop.ShowDialog() == true)
+                    {
+                        direction = (direc_pop.dChoice);
+                    }
+                }
             }
             // Shoot situation
             else
-            
             {
 
             }
@@ -96,5 +111,18 @@ namespace Naval_War_Interface_App
             pBoarList[4, 1] = "2";
         }
 
+        static public void initStack( Stack myStack )
+        {
+            myStack.Push("2");
+            myStack.Push("Torpilleur");
+            myStack.Push("3");
+            myStack.Push("Contre Torpilleur");
+            myStack.Push("3");
+            myStack.Push("Contre Torpilleur");
+            myStack.Push("4");
+            myStack.Push("Croiseur");
+            myStack.Push("5");
+            myStack.Push("Plane Carrier");
+        }
     }
 }
