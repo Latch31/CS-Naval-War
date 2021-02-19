@@ -17,9 +17,9 @@ namespace Naval_War_Interface_App
     /// <summary>
     /// Logique d'interaction pour textblock_pop.xaml
     /// </summary>
-    public partial class textblock_pop : Window
+    public partial class TextBlock_Popup : Window
     {
-        public textblock_pop()
+        public TextBlock_Popup()
         {
             InitializeComponent();
         }

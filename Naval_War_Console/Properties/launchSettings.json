@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CS-Naval-War": {
+      "commandName": "Project",
+      "workingDirectory": "A:\\C# Lesson\\CS-Naval-War"
+    }
+  }
+}

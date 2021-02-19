@@ -1,9 +1,19 @@
 using System;
+using System.Collections.Generic;
 
 namespace CS_Naval_War
 {
     public class Board
     {
+        
+        enum boatEnum{
+            Carrier,
+            Battleship,
+            Cruiser,
+            Submarine,
+            Destroyer,
+        }
+        HashSet<boatEnum> boatList = new HashSet<boatEnum>();
         private Char[,] boardTab = new Char[10, 10];
         public Char[,] bTab
         {
@@ -20,17 +30,78 @@ namespace CS_Naval_War
         {
             get { return name; }
         }
-
-        public Board()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                for (int y = 0; y < 10; y++)
-                {
+        public Board(){
+            for (int i = 0; i < 10; i++){
+                for (int y = 0; y < 10; y++){
                     boardTab[i, y] = '.';
                     boardShoot[i, y] = '.';
                 }
             }
+            boatList.Add((boatEnum)0);
+            boatList.Add((boatEnum)1);
+            boatList.Add((boatEnum)2);
+            boatList.Add((boatEnum)3);
+            boatList.Add((boatEnum)4);
+        }
+
+        public Boat ChooseBoat()
+        {
+            Console.WriteLine("- Choose your boat -");
+            int iter = 0;
+            do{
+                foreach ( boatEnum i in boatList)
+                {
+                    Console.WriteLine(iter + " : " + i );
+                    iter++;
+                }
+                String pChoice = Console.ReadLine();
+                var bChoose = (boatEnum)pChoice[0]-48;
+
+                if (boatList.Contains(bChoose)){
+                    switch (bChoose){
+                        case boatEnum.Carrier: 
+                            return BoatFactory.MakeCarrier();
+                        case boatEnum.Battleship:
+                            return BoatFactory.MakeBattleship();
+                        case boatEnum.Cruiser:
+                            return BoatFactory.MakeCruiser();
+                        case boatEnum.Submarine:
+                            return BoatFactory.MakeSubmarine();
+                        case boatEnum.Destroyer:
+                            return BoatFactory.MakeDestroyer();
+                        default:
+                            break;
+                    }
+                }
+            }while(true);
+        }
+
+        public String Coordonate(){
+            Console.WriteLine("Where did you want to place your boat ?");
+            do{
+                String choice = Console.ReadLine();
+                if ( choice.Length >=2){
+                    int x = choice[0]-48;
+                    int y = choice[1]-48;
+                    if ( this.boardTab[y,x] == '.'){
+                        return (choice.Substring(0, 2));
+                    }
+                }
+                else{
+                    Console.WriteLine("position occupied, please choose another position");
+                }
+            }while(true);
+        }
+
+        public Char ChooseDirection()
+        {
+            do{
+                Console.WriteLine("Choose your Direction\nN | S | E | W");
+                String pEntry = Console.ReadLine();
+                if ( pEntry[0] == 'N' || pEntry[0] == 'S' || pEntry[0] == 'E' || pEntry[0] == 'W' ){
+                    return pEntry[0];
+                } 
+            }while(true);
         }
 
         public void setPlayerName (string nameParam)
@@ -58,6 +129,55 @@ namespace CS_Naval_War
                 );
             }
         }
+
+        public Boolean CheckPlacement(int x, int y, int size, char direc){
+            switch (direc){
+                case 'N':
+                    if ( y-(size-1) >= 0){
+                        for ( int i = 0; i < size; i++){
+                            if ( this.boardTab[y-i, x] != '.'){  
+                                return false;
+                            }
+                        }
+                    return true;
+                    }
+                    return false;
+                case 'S':
+                    if ( y+(size-1) <= 9){
+                        for ( int i = 0; i < size; i++){
+                            if ( this.boardTab[y+i, x] != '.'){                                                
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    return false;
+                case 'E':
+                    if ( x+(size-1) <= 9){
+                        for ( int i = 0; i < size; i++){
+                            if ( this.boardTab[y, x+i] != '.'){
+                                return false;
+                            }
+                        }
+                    return true;
+                    }
+                return false;
+                case 'W':
+                    if ( x-(size-1) >= 0){
+                        for ( int i = 0; i < size; i++){
+                            if ( this.boardTab[y, x-i] != '.'){           
+                                return false;
+                            }
+                        }
+                    return true;
+                    }
+                    return false;
+                default:
+                    return false;
+            }
+        }
+
+        // old part now
 
         public bool placement(int x, int y, int size, char card)
         {   

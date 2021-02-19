@@ -6,10 +6,13 @@ namespace CS_Naval_War
     {
         static void Main(string[] args)
         {
+
+            Play game = new Play();
+            game.StartGame();
+            /*
             Console.Clear();
             Board player1 = new Board();
             Board player2 = new Board();
-            Play game = new Play();
             String[,] boatList = new string[5,2];
             String name;
 
@@ -40,6 +43,7 @@ namespace CS_Naval_War
 
             //Start the game
             game.startGame(player1, player2);
+            */
         }
 
         static public void boatInitialiseTab(String[,] pBoarList)

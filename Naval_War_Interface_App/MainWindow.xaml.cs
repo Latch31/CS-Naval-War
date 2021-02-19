@@ -38,12 +38,12 @@ namespace Naval_War_Interface_App
             initStack(boatP2);
             boatInitialiseTab(boatList);
 
-            textblock_pop name_choice;
+            TextBlock_Popup name_choice;
 
             //Player 1 Initialization
             do
             {
-                name_choice = new textblock_pop();
+                name_choice = new TextBlock_Popup();
                 if (name_choice.ShowDialog() == true)
                 {
                     player1.setPlayerName(name_choice.ResponseText);
@@ -53,7 +53,7 @@ namespace Naval_War_Interface_App
             //Player 2 Initialization
             do
             {
-                name_choice = new textblock_pop();
+                name_choice = new TextBlock_Popup();
                 if (name_choice.ShowDialog() == true)
                 {
                     player2.setPlayerName(name_choice.ResponseText);

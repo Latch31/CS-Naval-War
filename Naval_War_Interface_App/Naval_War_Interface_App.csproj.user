@@ -2,12 +2,18 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="textblock_pop.xaml.cs">
+    <Compile Update="Card_choice.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TextBlock_Popup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="textblock_pop.xaml">
+    <Page Update="Card_choice.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TextBlock_Popup.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
