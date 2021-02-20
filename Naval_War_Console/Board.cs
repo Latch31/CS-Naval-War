@@ -6,14 +6,10 @@ namespace CS_Naval_War
     public class Board
     {
         
-        enum boatEnum{
-            Carrier,
-            Battleship,
-            Cruiser,
-            Submarine,
-            Destroyer,
-        }
+        enum boatEnum{ Carrier, Battleship, Cruiser, Submarine, Destroyer,}
+        public enum direcEnum{ North, South, East, West,}
         HashSet<boatEnum> boatList = new HashSet<boatEnum>();
+        HashSet<direcEnum> direcList = new HashSet<direcEnum>();
         private Char[,] boardTab = new Char[10, 10];
         public Char[,] bTab
         {
@@ -42,6 +38,10 @@ namespace CS_Naval_War
             boatList.Add((boatEnum)2);
             boatList.Add((boatEnum)3);
             boatList.Add((boatEnum)4);
+            direcList.Add((direcEnum)0);
+            direcList.Add((direcEnum)1);
+            direcList.Add((direcEnum)2);
+            direcList.Add((direcEnum)3);
         }
 
         public Boat ChooseBoat()
@@ -93,14 +93,19 @@ namespace CS_Naval_War
             }while(true);
         }
 
-        public Char ChooseDirection()
+        public direcEnum ChooseDirection()
         {
+            int iter = 0;
             do{
-                Console.WriteLine("Choose your Direction\nN | S | E | W");
-                String pEntry = Console.ReadLine();
-                if ( pEntry[0] == 'N' || pEntry[0] == 'S' || pEntry[0] == 'E' || pEntry[0] == 'W' ){
-                    return pEntry[0];
-                } 
+                foreach (direcEnum i in direcList){
+                    Console.WriteLine(iter + " : " + i );
+                    iter++;
+                }
+                String pChoice = Console.ReadLine();
+                var bChoose = (direcEnum)pChoice[0]-48;
+                if (Enum.IsDefined(typeof(direcEnum), bChoose)){
+                    return (direcEnum)bChoose;
+                }
             }while(true);
         }
 
@@ -130,9 +135,9 @@ namespace CS_Naval_War
             }
         }
 
-        public Boolean CheckPlacement(int x, int y, int size, char direc){
+        public Boolean CheckPlacement(int x, int y, int size, direcEnum direc){
             switch (direc){
-                case 'N':
+                case direcEnum.North:
                     if ( y-(size-1) >= 0){
                         for ( int i = 0; i < size; i++){
                             if ( this.boardTab[y-i, x] != '.'){  
@@ -142,7 +147,7 @@ namespace CS_Naval_War
                     return true;
                     }
                     return false;
-                case 'S':
+                case direcEnum.South:
                     if ( y+(size-1) <= 9){
                         for ( int i = 0; i < size; i++){
                             if ( this.boardTab[y+i, x] != '.'){                                                
@@ -152,7 +157,7 @@ namespace CS_Naval_War
                         return true;
                     }
                     return false;
-                case 'E':
+                case direcEnum.East:
                     if ( x+(size-1) <= 9){
                         for ( int i = 0; i < size; i++){
                             if ( this.boardTab[y, x+i] != '.'){
@@ -162,7 +167,7 @@ namespace CS_Naval_War
                     return true;
                     }
                 return false;
-                case 'W':
+                case direcEnum.West:
                     if ( x-(size-1) >= 0){
                         for ( int i = 0; i < size; i++){
                             if ( this.boardTab[y, x-i] != '.'){           

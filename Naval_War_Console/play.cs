@@ -12,7 +12,7 @@ namespace CS_Naval_War
             Board player2 = new Board();
             Boat tempBoat;
             String tempCoor;
-            Char tempDir;
+            Board.direcEnum tempDir;
 
             Console.WriteLine("-- Please enter the name for the Player 1--");
             player1.setPlayerName(Console.ReadLine());
@@ -25,6 +25,7 @@ namespace CS_Naval_War
             tempBoat = player1.ChooseBoat();
             tempCoor = player1.Coordonate();
             tempDir  = player1.ChooseDirection();
+            
 
             Console.WriteLine("Coor : {0}{1}\nSize : {2}\nDir : {3}", tempCoor[0], tempCoor[1], tempBoat.size, tempDir);
             if ( player1.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
@@ -33,8 +34,6 @@ namespace CS_Naval_War
             else {
                 Console.WriteLine("bah tu peut recommencer, ton bateau rentre pas, dommage");
             }
-
-
         }
         public void startGame(Board p1, Board p2)
         {
