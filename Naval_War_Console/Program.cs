@@ -45,7 +45,7 @@ namespace CS_Naval_War
             game.startGame(player1, player2);
             */
         }
-
+/*
         static public void boatInitialiseTab(String[,] pBoarList)
         {
             pBoarList[0,0] = "Plane Carrier";
@@ -126,6 +126,6 @@ namespace CS_Naval_War
                     }
                 }
             }while(!goodPlacement);
-        }
+        }*/
     }
 }

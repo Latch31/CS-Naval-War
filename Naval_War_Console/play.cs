@@ -29,7 +29,7 @@ namespace CS_Naval_War
 
             Console.WriteLine("Coor : {0}{1}\nSize : {2}\nDir : {3}", tempCoor[0], tempCoor[1], tempBoat.size, tempDir);
             if ( player1.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
-                Console.WriteLine("Bravo tu peut placer le bateau, tient voila un sourire :)");
+                player1.placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir);
             }
             else {
                 Console.WriteLine("bah tu peut recommencer, ton bateau rentre pas, dommage");
