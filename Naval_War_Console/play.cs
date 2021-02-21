@@ -25,6 +25,7 @@ namespace CS_Naval_War
             do{
                 player1.printTab(player1.bTab);
                 tempBoat = player1.ChooseBoat();
+                Console.WriteLine(tempBoat.name);
                 tempCoor = player1.Coordonate();
                 tempDir  = player1.ChooseDirection();
                 if (player1.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
@@ -34,6 +35,8 @@ namespace CS_Naval_War
                     Console.WriteLine("bah tu peut recommencer, ton bateau rentre pas, dommage");
                 }
             }while(player1.BoatLeftToPlace() != 0);
+            Console.Clear();
+            player1.printTab(player1.bTab);
         }
 
 

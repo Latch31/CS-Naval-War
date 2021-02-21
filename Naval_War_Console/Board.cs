@@ -9,7 +9,7 @@ namespace CS_Naval_War
         enum boatEnum{ Carrier, Battleship, Cruiser, Submarine, Destroyer,}
         public enum direcEnum{ North, South, East, West,}
         Dictionary<int, Boat> boatPlace = new Dictionary<int, Boat>();
-        HashSet<boatEnum> boatList = new HashSet<boatEnum>();
+        Dictionary<int, boatEnum> boatList = new Dictionary<int, boatEnum>();
         HashSet<direcEnum> direcList = new HashSet<direcEnum>();
         private Char[,] boardTab = new Char[10, 10];
         public Char[,] bTab
@@ -34,11 +34,11 @@ namespace CS_Naval_War
                     boardShoot[i, y] = '.';
                 }
             }
-            boatList.Add((boatEnum)0);
-            boatList.Add((boatEnum)1);
-            boatList.Add((boatEnum)2);
-            boatList.Add((boatEnum)3);
-            boatList.Add((boatEnum)4);
+            boatList.Add(0, (boatEnum)0);
+            boatList.Add(1, (boatEnum)1);
+            boatList.Add(2, (boatEnum)2);
+            boatList.Add(3, (boatEnum)3);
+            boatList.Add(4, (boatEnum)4);
             direcList.Add((direcEnum)0);
             direcList.Add((direcEnum)1);
             direcList.Add((direcEnum)2);
@@ -47,16 +47,14 @@ namespace CS_Naval_War
 
         public Boat ChooseBoat(){
             Console.WriteLine("- Choose your boat -");
-            int iter;
             do{
-                iter = 0;
-                foreach ( boatEnum i in boatList){
-                    Console.WriteLine(iter + " : " + i );
-                    iter++;
+                foreach ( KeyValuePair<int, boatEnum> i in boatList){
+                    Console.WriteLine(i.Key + " : " + i.Value );
                 }
                 String pChoice = Console.ReadLine();
-                var bChoose = (boatEnum)pChoice[0]-48;
-                if (boatList.Contains(bChoose)){
+                boatEnum bChoose = new boatEnum();
+                if (boatList.TryGetValue(pChoice[0]-48, out bChoose)){
+                    boatList.Remove(pChoice[0]-48);
                     switch (bChoose){
                         case boatEnum.Carrier: 
                             return BoatFactory.MakeCarrier();
@@ -200,7 +198,6 @@ namespace CS_Naval_War
                 default:
                     return false;
             }
-            boatList.Remove(boatEnum.Carrier);
             return true;
         }
 
