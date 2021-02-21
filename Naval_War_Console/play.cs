@@ -21,20 +21,33 @@ namespace CS_Naval_War
             player2.setPlayerName(Console.ReadLine());
 
             //Boat placement
-            // penser a faire un retour arrière si le dernier placement et pas bon, ou et anuller
-            tempBoat = player1.ChooseBoat();
-            tempCoor = player1.Coordonate();
-            tempDir  = player1.ChooseDirection();
-            
-
-            Console.WriteLine("Coor : {0}{1}\nSize : {2}\nDir : {3}", tempCoor[0], tempCoor[1], tempBoat.size, tempDir);
-            if ( player1.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
-                player1.placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir);
-            }
-            else {
-                Console.WriteLine("bah tu peut recommencer, ton bateau rentre pas, dommage");
-            }
+            // penser a faire un retour arrière si le dernier placement et pas bon, ou et anuler
+            do{
+                player1.printTab(player1.bTab);
+                tempBoat = player1.ChooseBoat();
+                tempCoor = player1.Coordonate();
+                tempDir  = player1.ChooseDirection();
+                if (player1.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
+                    player1.Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, player1.BoatLeftToPlace());
+                }
+                else {
+                    Console.WriteLine("bah tu peut recommencer, ton bateau rentre pas, dommage");
+                }
+            }while(player1.BoatLeftToPlace() != 0);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
         public void startGame(Board p1, Board p2)
         {
             bool win = false; // know if someone win

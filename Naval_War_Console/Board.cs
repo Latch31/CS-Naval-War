@@ -8,6 +8,7 @@ namespace CS_Naval_War
         
         enum boatEnum{ Carrier, Battleship, Cruiser, Submarine, Destroyer,}
         public enum direcEnum{ North, South, East, West,}
+        Dictionary<int, Boat> boatPlace = new Dictionary<int, Boat>();
         HashSet<boatEnum> boatList = new HashSet<boatEnum>();
         HashSet<direcEnum> direcList = new HashSet<direcEnum>();
         private Char[,] boardTab = new Char[10, 10];
@@ -46,8 +47,9 @@ namespace CS_Naval_War
 
         public Boat ChooseBoat(){
             Console.WriteLine("- Choose your boat -");
-            int iter = 0;
+            int iter;
             do{
+                iter = 0;
                 foreach ( boatEnum i in boatList){
                     Console.WriteLine(iter + " : " + i );
                     iter++;
@@ -91,8 +93,9 @@ namespace CS_Naval_War
         }
 
         public direcEnum ChooseDirection(){
-            int iter = 0;
+            int iter;
             do{
+                iter = 0;
                 foreach (direcEnum i in direcList){
                     Console.WriteLine(iter + " : " + i );
                     iter++;
@@ -163,13 +166,46 @@ namespace CS_Naval_War
                     return false;
             }
         }
-
-        // old part now
-
-        public bool placement(int x, int y, int size, direcEnum card){   
-
-            return false;
+        public bool Placement(int x, int y, Boat pBoat, direcEnum direc, int numBoat){
+            boatPlace.Add(numBoat, pBoat);
+            switch (direc){
+                case direcEnum.North:
+                    if ( y-(pBoat.size-1) >= 0){
+                        for ( int i = 0; i < pBoat.size; i++){
+                            this.boardTab[y-i, x] = (Char)(numBoat+48);
+                        }
+                    }
+                    break;
+                case direcEnum.South:
+                    if ( y+(pBoat.size-1) <= 9){
+                        for ( int i = 0; i < pBoat.size; i++){
+                            this.boardTab[y+i, x] = (Char)(numBoat+48);
+                        }
+                    }
+                    break;
+                case direcEnum.East:
+                    if ( x+(pBoat.size-1) <= 9){
+                        for ( int i = 0; i < pBoat.size; i++){
+                            this.boardTab[y, x+i] = (Char)(numBoat+48);
+                        }
+                    }
+                    break;
+                case direcEnum.West:
+                    if ( x-(pBoat.size-1) >= 0){
+                        for ( int i = 0; i < pBoat.size; i++){
+                            this.boardTab[y, x-i] = (Char)(numBoat+48);
+                        }
+                    }
+                    break;
+                default:
+                    return false;
+            }
+            boatList.Remove(boatEnum.Carrier);
+            return true;
         }
+
+        public int BoatLeftToPlace()
+        {return boatList.Count;}
 
         public void shoot(int x, int y, bool touch)
         {
