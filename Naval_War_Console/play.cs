@@ -10,9 +10,7 @@ namespace CS_Naval_War
         {
             Board player1 = new Board();
             Board player2 = new Board();
-            Boat tempBoat;
-            String tempCoor;
-            Board.direcEnum tempDir;
+            
 
             Console.WriteLine("-- Please enter the name for the Player 1--");
             player1.setPlayerName(Console.ReadLine());
@@ -20,24 +18,31 @@ namespace CS_Naval_War
             Console.WriteLine("-- Please enter the name for the Player 2--");
             player2.setPlayerName(Console.ReadLine());
 
+            PlayPlacement(player1);
+            PlayPlacement(player2);
             //Boat placement
             // penser a faire un retour arrière si le dernier placement et pas bon, ou et anuler
-            do{
-                player1.printTab(player1.bTab);
-                tempBoat = player1.ChooseBoat();
-                Console.WriteLine(tempBoat.name);
-                tempCoor = player1.Coordonate();
-                tempDir  = player1.ChooseDirection();
-                if (player1.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
-                    player1.Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, player1.BoatLeftToPlace());
-                }
-                else {
-                    Console.WriteLine("bah tu peut recommencer, ton bateau rentre pas, dommage");
-                }
-            }while(player1.BoatLeftToPlace() != 0);
-            Console.Clear();
-            player1.printTab(player1.bTab);
+            
         }
+        public void PlayPlacement(Board player)
+        {   
+            Boat tempBoat;
+            String tempCoor;
+            Board.direcEnum tempDir;
+            do{
+                player.printTab(player.bTab);
+                tempBoat = player.ChooseBoat();
+                do{
+                    tempCoor = player.Coordonate();
+                    tempDir  = player.ChooseDirection();
+                    if (!player.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
+                        Console.WriteLine("- /!\\ Error detected, please retry with another coordonate or direction /!\\ -");
+                    }
+                }while(!player.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir));
+                player.Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, player.BoatLeftToPlace());
+            }while(player.BoatLeftToPlace() != 0);
+        }
+        
 
 
 
