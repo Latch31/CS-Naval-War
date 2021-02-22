@@ -60,7 +60,7 @@ namespace CS_Naval_War{
 
 // NOT TO SEE OLD CODE, i keep it when i have to do the part play
 
-
+/*
         public void startGame(Board p1, Board p2)
         {
             bool win = false; // know if someone win
@@ -142,6 +142,6 @@ namespace CS_Naval_War{
                 Console.WriteLine("Miss");
                 return false;
             }
-        }
+        }*/
     }
 }
