@@ -1,46 +1,51 @@
 using System;
 using System.Collections.Generic;
 
-namespace CS_Naval_War
-{
-    class Play
-    {
-
-        public void StartGame()
-        {
-            Board player1 = new Board();
-            Board player2 = new Board();
+namespace CS_Naval_War{
+    class Play{
+        public List<Board> boats = new List<Board>();
+        public Dictionary<int, Boat> boatPlaceList = new Dictionary<int, Boat>();
+        public void StartGame(){
             
-
+            
+            boats.Add(new Board());
+            boats.Add(new Board());
+            
             Console.WriteLine("-- Please enter the name for the Player 1--");
-            player1.setPlayerName(Console.ReadLine());
+            Player player1 = new Player(Console.ReadLine());
 
             Console.WriteLine("-- Please enter the name for the Player 2--");
-            player2.setPlayerName(Console.ReadLine());
+            Player player2 = new Player(Console.ReadLine());
 
-            PlayPlacement(player1);
-            PlayPlacement(player2);
-            //Boat placement
-            // penser a faire un retour arrière si le dernier placement et pas bon, ou et anuler
+            PlayPlacement(player1, 0);
+            PlayPlacement(player2, 1);
             
         }
-        public void PlayPlacement(Board player)
-        {   
+        public void PlayPlacement(Player player, int nbPlayer){   
             Boat tempBoat;
             String tempCoor;
             Board.direcEnum tempDir;
+            Dictionary<int, Board.boatEnum> boatList = new Dictionary<int, Board.boatEnum>();
+            boatList.Add(0, (Board.boatEnum)0);
+            boatList.Add(1, (Board.boatEnum)1);
+            boatList.Add(2, (Board.boatEnum)2);
+            boatList.Add(3, (Board.boatEnum)3);
+            boatList.Add(4, (Board.boatEnum)4);
+            
             do{
-                player.printTab(player.bTab);
-                tempBoat = player.ChooseBoat();
+                player.boatBoard.printTab();
+                tempBoat = player.ChooseBoat(boatList);
                 do{
-                    tempCoor = player.Coordonate();
+                    tempCoor = player.ChooseCoordonate();
                     tempDir  = player.ChooseDirection();
-                    if (!player.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
+                    if (!player.boatBoard.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir)){
                         Console.WriteLine("- /!\\ Error detected, please retry with another coordonate or direction /!\\ -");
                     }
-                }while(!player.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir));
-                player.Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, player.BoatLeftToPlace());
-            }while(player.BoatLeftToPlace() != 0);
+                }while(!player.boatBoard.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir));
+                boats[nbPlayer].Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, boatList.Count);
+                boatPlaceList.Add(boatList.Count, tempBoat);
+                player.boatBoard.Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, boatList.Count);
+            }while(boatList.Count != 0);
         }
         
 
@@ -53,7 +58,7 @@ namespace CS_Naval_War
 
 
 
-
+// NOT TO SEE OLD CODE, i keep it when i have to do the part play
 
 
         public void startGame(Board p1, Board p2)

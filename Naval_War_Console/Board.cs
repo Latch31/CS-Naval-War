@@ -6,115 +6,31 @@ namespace CS_Naval_War
     public class Board
     {
         
-        enum boatEnum{ Carrier, Battleship, Cruiser, Submarine, Destroyer,}
+        public enum boatEnum{ Carrier, Battleship, Cruiser, Submarine, Destroyer,}
         public enum direcEnum{ North, South, East, West,}
-        Dictionary<int, Boat> boatPlace = new Dictionary<int, Boat>();
-        Dictionary<int, boatEnum> boatList = new Dictionary<int, boatEnum>();
-        HashSet<direcEnum> direcList = new HashSet<direcEnum>();
-        private Char[,] boardTab = new Char[10, 10];
-        public Char[,] bTab
-        {
+        public Dictionary<int, Boat> boatPlace = new Dictionary<int, Boat>();
+        public HashSet<direcEnum> direcList = new HashSet<direcEnum>();
+        public Char[,] boardTab = new Char[10, 10];
+        public Char[,] bTab{
             get { return this.boardTab; }
         }
-        private Char[,] boardShoot = new char[10, 10];
-        public Char[,] bShoot
-        {
-            get { return this.boardShoot; }
-        }
         public bool bInitialise = false;
-        private String name;
-        public String pName
-        {
-            get { return name; }
-        }
         public Board(){
             for (int i = 0; i < 10; i++){
                 for (int y = 0; y < 10; y++){
                     boardTab[i, y] = '.';
-                    boardShoot[i, y] = '.';
                 }
             }
-            boatList.Add(0, (boatEnum)0);
-            boatList.Add(1, (boatEnum)1);
-            boatList.Add(2, (boatEnum)2);
-            boatList.Add(3, (boatEnum)3);
-            boatList.Add(4, (boatEnum)4);
             direcList.Add((direcEnum)0);
             direcList.Add((direcEnum)1);
             direcList.Add((direcEnum)2);
             direcList.Add((direcEnum)3);
         }
-
-        public Boat ChooseBoat(){
-            Console.WriteLine("- Choose your boat -");
-            do{
-                foreach ( KeyValuePair<int, boatEnum> i in boatList){
-                    Console.WriteLine(i.Key + " : " + i.Value );
-                }
-                String pChoice = Console.ReadLine();
-                boatEnum bChoose = new boatEnum();
-                if (boatList.TryGetValue(pChoice[0]-48, out bChoose)){
-                    boatList.Remove(pChoice[0]-48);
-                    switch (bChoose){
-                        case boatEnum.Carrier: 
-                            return BoatFactory.MakeCarrier();
-                        case boatEnum.Battleship:
-                            return BoatFactory.MakeBattleship();
-                        case boatEnum.Cruiser:
-                            return BoatFactory.MakeCruiser();
-                        case boatEnum.Submarine:
-                            return BoatFactory.MakeSubmarine();
-                        case boatEnum.Destroyer:
-                            return BoatFactory.MakeDestroyer();
-                        default:
-                            break;
-                    }
-                }
-            }while(true);
-        }
-
-        public String Coordonate(){
-            Console.WriteLine("Where did you want to place your boat ?");
-            do{
-                String choice = Console.ReadLine();
-                if ( choice.Length >=2){
-                    int x = choice[0]-48;
-                    int y = choice[1]-48;
-                    if ( this.boardTab[y,x] == '.'){
-                        return (choice.Substring(0, 2));
-                    }
-                }
-                else{
-                    Console.WriteLine("position occupied, please choose another position");
-                }
-            }while(true);
-        }
-
-        public direcEnum ChooseDirection(){
-            int iter;
-            do{
-                iter = 0;
-                foreach (direcEnum i in direcList){
-                    Console.WriteLine(iter + " : " + i );
-                    iter++;
-                }
-                String pChoice = Console.ReadLine();
-                var bChoose = (direcEnum)pChoice[0]-48;
-                if (Enum.IsDefined(typeof(direcEnum), bChoose)){
-                    return (direcEnum)bChoose;
-                }
-            }while(true);
-        }
-
-        public void setPlayerName (string nameParam){
-            this.name = nameParam;
-        }
-
-        public void printTab(Char[,] printTab){
+        public void printTab(){
             Console.WriteLine(" \\ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
             for ( int i = 0; i < 10; i++){
                 Console.WriteLine(" {0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} | {9} | {10} |",
-                i, printTab[i, 0], printTab[i, 1], printTab[i, 2], printTab[i, 3], printTab[i, 4], printTab[i, 5], printTab[i, 6], printTab[i, 7], printTab[i, 8], printTab[i, 9] );
+                i, this.boardTab[i, 0], this.boardTab[i, 1], this.boardTab[i, 2], this.boardTab[i, 3], this.boardTab[i, 4], this.boardTab[i, 5], this.boardTab[i, 6], this.boardTab[i, 7], this.boardTab[i, 8], this.boardTab[i, 9] );
             }
         }
 
@@ -200,34 +116,25 @@ namespace CS_Naval_War
             }
             return true;
         }
-
-        public int BoatLeftToPlace()
-        {return boatList.Count;}
-
-        public void shoot(int x, int y, bool touch)
-        {
-            if ( touch )
-            {
-                this.boardShoot[y, x] = 'X';
-            }
-            else if (this.boardShoot[y,x] != 'X')
-            {
-                this.boardShoot[y,x] = 'O';
-            }
+        public String WhereToShot(){
+            Console.WriteLine("Where did you want to shoot ?");
+            Console.ReadLine();
+            do{
+                String choice = Console.ReadLine();
+                if ( choice.Length >=2){
+                    int x = choice[0]-48;
+                    int y = choice[1]-48;
+                    return (choice.Substring(0, 2));
+                }
+            }while(true);
         }
         //Manage the shot system
-        public bool getShot(int x, int y)
-        {
-            Char data;
-            data = this.boardTab[y, x];
-
-            if ( data == 'O')
-            {
+        public bool getShot(int x, int y){
+            if ( this.boardTab[y, x] == 'O'){
                 this.boardTab[y, x] = 'X';
                 return true;
             }
-            else
-            {
+            else{
                 return false;
             }
         }
