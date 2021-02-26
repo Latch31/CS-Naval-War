@@ -5,8 +5,6 @@ namespace CS_Naval_War
 {
     public class Board
     {
-        
-        public enum boatEnum{ Carrier, Battleship, Cruiser, Submarine, Destroyer,}
         public enum direcEnum{ North, South, East, West,}
         public Dictionary<int, Boat> boatPlace = new Dictionary<int, Boat>();
         public HashSet<direcEnum> direcList = new HashSet<direcEnum>();
@@ -116,18 +114,7 @@ namespace CS_Naval_War
             }
             return true;
         }
-        public String WhereToShot(){
-            Console.WriteLine("Where did you want to shoot ?");
-            Console.ReadLine();
-            do{
-                String choice = Console.ReadLine();
-                if ( choice.Length >=2){
-                    int x = choice[0]-48;
-                    int y = choice[1]-48;
-                    return (choice.Substring(0, 2));
-                }
-            }while(true);
-        }
+        
         //Manage the shot system
         public bool getShot(int x, int y){
             if ( this.boardTab[y, x] == 'O'){
@@ -139,14 +126,10 @@ namespace CS_Naval_War
             }
         }
 
-        public bool checkAlive()
-        {
-            for ( int x = 0; x < 10; x++)
-            {
-                for ( int y = 0; y < 10; y++)
-                {
-                    if ( this.boardTab[x, y] == 'O')
-                    {
+        public bool checkAlive(){
+            for ( int x = 0; x < 10; x++){
+                for ( int y = 0; y < 10; y++){
+                    if ( this.boardTab[x, y] == 'O'){
                         return false;
                     }
                 }

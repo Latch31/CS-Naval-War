@@ -1,18 +1,16 @@
-namespace CS_Naval_War
-{  
-    public class Boat
-    {
+namespace CS_Naval_War{  
+    public class Boat{
+        
+        public enum boatEnum{ CARRIER, BATTLESHIP, CRUISER, SUBMARINE, DESTROYER,}
         public string name;
         public int size;
-        internal Boat(string bName, int bSize)
-        {
+        internal Boat(string bName, int bSize){
             this.name = bName;
             this.size = bSize;
         }
     }
 
-    public class BoatFactory
-    {
+    public class BoatFactory{
         static public Boat MakeCarrier(){
             return new Boat("Carrier", 5);            
         }

@@ -19,26 +19,26 @@ namespace CS_Naval_War{
             boatPlace = pBoatPlace;
         }
 
-        public Boat ChooseBoat(Dictionary<int, Board.boatEnum> boatList){
+        public Boat ChooseBoat(Dictionary<int, Boat.boatEnum> boatList){
             Console.WriteLine("- Choose your boat -");
             do{
-                foreach ( KeyValuePair<int, Board.boatEnum> i in boatList){
+                foreach ( KeyValuePair<int, Boat.boatEnum> i in boatList){
                     Console.WriteLine(i.Key + " : " + i.Value );
                 }
                 String pChoice = Console.ReadLine();
-                Board.boatEnum bChoose = new Board.boatEnum();
+                Boat.boatEnum bChoose = new Boat.boatEnum();
                 if (boatList.TryGetValue(pChoice[0]-48, out bChoose)){
                     boatList.Remove(pChoice[0]-48);
                     switch (bChoose){
-                        case Board.boatEnum.Carrier: 
+                        case Boat.boatEnum.CARRIER: 
                             return BoatFactory.MakeCarrier();
-                        case Board.boatEnum.Battleship:
+                        case Boat.boatEnum.BATTLESHIP:
                             return BoatFactory.MakeBattleship();
-                        case Board.boatEnum.Cruiser:
+                        case Boat.boatEnum.CRUISER:
                             return BoatFactory.MakeCruiser();
-                        case Board.boatEnum.Submarine:
+                        case Boat.boatEnum.SUBMARINE:
                             return BoatFactory.MakeSubmarine();
-                        case Board.boatEnum.Destroyer:
+                        case Boat.boatEnum.DESTROYER:
                             return BoatFactory.MakeDestroyer();
                         default:
                             break;
@@ -76,6 +76,19 @@ namespace CS_Naval_War{
                 var bChoose = (Board.direcEnum)pChoice[0]-48;
                 if (Enum.IsDefined(typeof(Board.direcEnum), bChoose)){
                     return (Board.direcEnum)bChoose;
+                }
+            }while(true);
+        }
+
+        public String WhereToShot(){
+            Console.WriteLine("Where did you want to shoot ?");
+            Console.ReadLine();
+            do{
+                String choice = Console.ReadLine();
+                if ( choice.Length >=2){
+                    int x = choice[0]-48;
+                    int y = choice[1]-48;
+                    return (choice.Substring(0, 2));
                 }
             }while(true);
         }

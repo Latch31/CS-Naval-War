@@ -5,6 +5,8 @@ namespace CS_Naval_War{
     class Play{
         public List<Board> boats = new List<Board>();
         public Dictionary<int, Boat> boatPlaceList = new Dictionary<int, Boat>();
+
+        public int nbBoatPlace = 0;
         public void StartGame(){
             
             
@@ -25,12 +27,12 @@ namespace CS_Naval_War{
             Boat tempBoat;
             String tempCoor;
             Board.direcEnum tempDir;
-            Dictionary<int, Board.boatEnum> boatList = new Dictionary<int, Board.boatEnum>();
-            boatList.Add(0, (Board.boatEnum)0);
-            boatList.Add(1, (Board.boatEnum)1);
-            boatList.Add(2, (Board.boatEnum)2);
-            boatList.Add(3, (Board.boatEnum)3);
-            boatList.Add(4, (Board.boatEnum)4);
+            Dictionary<int, Boat.boatEnum> boatList = new Dictionary<int, Boat.boatEnum>();
+            boatList.Add(0, Boat.boatEnum.CARRIER);
+            boatList.Add(1, Boat.boatEnum.BATTLESHIP);
+            boatList.Add(2, Boat.boatEnum.CRUISER);
+            boatList.Add(3, Boat.boatEnum.SUBMARINE);
+            boatList.Add(4, Boat.boatEnum.DESTROYER);
             
             do{
                 player.boatBoard.printTab();
@@ -42,9 +44,10 @@ namespace CS_Naval_War{
                         Console.WriteLine("- /!\\ Error detected, please retry with another coordonate or direction /!\\ -");
                     }
                 }while(!player.boatBoard.CheckPlacement(tempCoor[0]-48, tempCoor[1]-48, tempBoat.size, tempDir));
-                boats[nbPlayer].Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, boatList.Count);
-                boatPlaceList.Add(boatList.Count, tempBoat);
-                player.boatBoard.Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, boatList.Count);
+                boats[nbPlayer].Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, nbBoatPlace);
+                boatPlaceList.Add(nbBoatPlace, tempBoat);
+                player.boatBoard.Placement(tempCoor[0]-48, tempCoor[1]-48, tempBoat, tempDir, nbBoatPlace);
+                nbBoatPlace++;
             }while(boatList.Count != 0);
         }
         
