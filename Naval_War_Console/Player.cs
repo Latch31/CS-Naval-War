@@ -54,12 +54,14 @@ namespace CS_Naval_War{
                 if ( choice.Length >=2){
                     int x = choice[0]-48;
                     int y = choice[1]-48;
-                    if ( this.boatBoard.boardTab[y,x] == '.'){
+                    if ( this.boatBoard.boardTab[y,x] == 0){
                         return (choice.Substring(0, 2));
+                    } else {
+                        Console.WriteLine("there is already a boat here !, choose another coordonate");
                     }
                 }
                 else{
-                    Console.WriteLine("position occupied, please choose another position");
+                    Console.WriteLine("bad coordonate, please retry");
                 }
             }while(true);
         }
@@ -81,10 +83,10 @@ namespace CS_Naval_War{
         }
 
         public String WhereToShot(){
-            Console.WriteLine("Where did you want to shoot ?");
-            Console.ReadLine();
+            String choice;
+            Console.WriteLine("Where did you want to shoot {0} ?", this.name);
             do{
-                String choice = Console.ReadLine();
+                choice = Console.ReadLine();
                 if ( choice.Length >=2){
                     int x = choice[0]-48;
                     int y = choice[1]-48;

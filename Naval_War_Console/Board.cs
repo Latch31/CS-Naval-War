@@ -8,21 +8,21 @@ namespace CS_Naval_War
         public enum direcEnum{ North, South, East, West,}
         public Dictionary<int, Boat> boatPlace = new Dictionary<int, Boat>();
         public HashSet<direcEnum> direcList = new HashSet<direcEnum>();
-        public Char[,] boardTab = new Char[10, 10];
-        public Char[,] bTab{
+        public int[,] boardTab = new int[10, 10];
+        public int[,] bTab{
             get { return this.boardTab; }
         }
         public bool bInitialise = false;
         public Board(){
-            for (int i = 0; i < 10; i++){
+            /*for (int i = 0; i < 10; i++){
                 for (int y = 0; y < 10; y++){
                     boardTab[i, y] = '.';
                 }
-            }
-            direcList.Add((direcEnum)0);
-            direcList.Add((direcEnum)1);
-            direcList.Add((direcEnum)2);
-            direcList.Add((direcEnum)3);
+            }*/
+            direcList.Add(direcEnum.North);
+            direcList.Add(direcEnum.South);
+            direcList.Add(direcEnum.East);
+            direcList.Add(direcEnum.West);
         }
         public void printTab(){
             Console.WriteLine(" \\ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
@@ -37,7 +37,7 @@ namespace CS_Naval_War
                 case direcEnum.North:
                     if ( y-(size-1) >= 0){
                         for ( int i = 0; i < size; i++){
-                            if ( this.boardTab[y-i, x] != '.'){  
+                            if ( this.boardTab[y-i, x] != 0){  
                                 return false;
                             }
                         }
@@ -47,7 +47,7 @@ namespace CS_Naval_War
                 case direcEnum.South:
                     if ( y+(size-1) <= 9){
                         for ( int i = 0; i < size; i++){
-                            if ( this.boardTab[y+i, x] != '.'){                                                
+                            if ( this.boardTab[y+i, x] != 0){                                                
                                 return false;
                             }
                         }
@@ -57,7 +57,7 @@ namespace CS_Naval_War
                 case direcEnum.East:
                     if ( x+(size-1) <= 9){
                         for ( int i = 0; i < size; i++){
-                            if ( this.boardTab[y, x+i] != '.'){
+                            if ( this.boardTab[y, x+i] != 0){
                                 return false;
                             }
                         }
@@ -67,7 +67,7 @@ namespace CS_Naval_War
                 case direcEnum.West:
                     if ( x-(size-1) >= 0){
                         for ( int i = 0; i < size; i++){
-                            if ( this.boardTab[y, x-i] != '.'){           
+                            if ( this.boardTab[y, x-i] != 0){           
                                 return false;
                             }
                         }
@@ -84,28 +84,28 @@ namespace CS_Naval_War
                 case direcEnum.North:
                     if ( y-(pBoat.size-1) >= 0){
                         for ( int i = 0; i < pBoat.size; i++){
-                            this.boardTab[y-i, x] = (Char)(numBoat+48);
+                            this.boardTab[y-i, x] = numBoat;
                         }
                     }
                     break;
                 case direcEnum.South:
                     if ( y+(pBoat.size-1) <= 9){
                         for ( int i = 0; i < pBoat.size; i++){
-                            this.boardTab[y+i, x] = (Char)(numBoat+48);
+                            this.boardTab[y+i, x] = numBoat;
                         }
                     }
                     break;
                 case direcEnum.East:
                     if ( x+(pBoat.size-1) <= 9){
                         for ( int i = 0; i < pBoat.size; i++){
-                            this.boardTab[y, x+i] = (Char)(numBoat+48);
+                            this.boardTab[y, x+i] = numBoat;
                         }
                     }
                     break;
                 case direcEnum.West:
                     if ( x-(pBoat.size-1) >= 0){
                         for ( int i = 0; i < pBoat.size; i++){
-                            this.boardTab[y, x-i] = (Char)(numBoat+48);
+                            this.boardTab[y, x-i] = numBoat;
                         }
                     }
                     break;
@@ -116,25 +116,17 @@ namespace CS_Naval_War
         }
         
         //Manage the shot system
-        public bool getShot(int x, int y){
-            if ( this.boardTab[y, x] == 'O'){
-                this.boardTab[y, x] = 'X';
-                return true;
-            }
-            else{
-                return false;
-            }
+        public void ShootBoardShoot(String coordonate){
+            this.boardTab[coordonate[1]-48, coordonate[0]-48] = 1;
         }
 
-        public bool checkAlive(){
-            for ( int x = 0; x < 10; x++){
-                for ( int y = 0; y < 10; y++){
-                    if ( this.boardTab[x, y] == 'O'){
-                        return false;
-                    }
-                }
-            }
-            return true;
+        public int ShootTake(String coordonate){
+            //this.boardTab[coordonate[1], coordonate[0]] = 'X';
+            return this.boardTab[coordonate[1]-48, coordonate[0]-48];
+        }
+
+        public bool CheckBoatAlcie(int idBoat){
+            return false;
         }
     }
 }
