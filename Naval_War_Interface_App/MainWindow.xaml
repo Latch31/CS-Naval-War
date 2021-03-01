@@ -1,0 +1,168 @@
+﻿<Window x:Class="Naval_War_Interface_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Naval_War_Interface_App"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="buttonGrid" Margin="30,29,356,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button x:Name="B_00" Grid.Column="0" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_01" Grid.Column="0" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_02" Grid.Column="0" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_03" Grid.Column="0" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_04" Grid.Column="0" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_05" Grid.Column="0" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_06" Grid.Column="0" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_07" Grid.Column="0" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_08" Grid.Column="0" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_09" Grid.Column="0" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_10" Grid.Column="1" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_11" Grid.Column="1" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_12" Grid.Column="1" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_13" Grid.Column="1" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_14" Grid.Column="1" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_15" Grid.Column="1" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_16" Grid.Column="1" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_17" Grid.Column="1" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_18" Grid.Column="1" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_19" Grid.Column="1" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_20" Grid.Column="2" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_21" Grid.Column="2" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_22" Grid.Column="2" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_23" Grid.Column="2" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_24" Grid.Column="2" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_25" Grid.Column="2" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_26" Grid.Column="2" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_27" Grid.Column="2" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_28" Grid.Column="2" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_29" Grid.Column="2" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_30" Grid.Column="3" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_31" Grid.Column="3" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_32" Grid.Column="3" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_33" Grid.Column="3" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_34" Grid.Column="3" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_35" Grid.Column="3" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_36" Grid.Column="3" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_37" Grid.Column="3" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_38" Grid.Column="3" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_39" Grid.Column="3" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_40" Grid.Column="4" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_41" Grid.Column="4" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_42" Grid.Column="4" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_43" Grid.Column="4" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_44" Grid.Column="4" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_45" Grid.Column="4" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_46" Grid.Column="4" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_47" Grid.Column="4" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_48" Grid.Column="4" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_49" Grid.Column="4" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_50" Grid.Column="5" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_51" Grid.Column="5" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_52" Grid.Column="5" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_53" Grid.Column="5" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_54" Grid.Column="5" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_55" Grid.Column="5" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_56" Grid.Column="5" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_57" Grid.Column="5" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_58" Grid.Column="5" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_59" Grid.Column="5" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_60" Grid.Column="6" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_61" Grid.Column="6" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_62" Grid.Column="6" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_63" Grid.Column="6" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_64" Grid.Column="6" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_65" Grid.Column="6" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_66" Grid.Column="6" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_67" Grid.Column="6" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_68" Grid.Column="6" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_69" Grid.Column="6" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_70" Grid.Column="7" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_71" Grid.Column="7" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_72" Grid.Column="7" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_73" Grid.Column="7" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_74" Grid.Column="7" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_75" Grid.Column="7" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_76" Grid.Column="7" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_77" Grid.Column="7" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_78" Grid.Column="7" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_79" Grid.Column="7" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_80" Grid.Column="8" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_81" Grid.Column="8" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_82" Grid.Column="8" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_83" Grid.Column="8" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_84" Grid.Column="8" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_85" Grid.Column="8" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_86" Grid.Column="8" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_87" Grid.Column="8" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_88" Grid.Column="8" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_89" Grid.Column="8" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+
+            <Button x:Name="B_90" Grid.Column="9" Grid.Row="0" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_91" Grid.Column="9" Grid.Row="1" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_92" Grid.Column="9" Grid.Row="2" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_93" Grid.Column="9" Grid.Row="3" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_94" Grid.Column="9" Grid.Row="4" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_95" Grid.Column="9" Grid.Row="5" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_96" Grid.Column="9" Grid.Row="6" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_97" Grid.Column="9" Grid.Row="7" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_98" Grid.Column="9" Grid.Row="8" Cursor="Hand" Click="buttonPress"/>
+            <Button x:Name="B_99" Grid.Column="9" Grid.Row="9" Cursor="Hand" Click="buttonPress"/>
+        </Grid>
+        <Label Content="0" HorizontalAlignment="Left" Margin="30,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="1" HorizontalAlignment="Left" Margin="71,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="2" HorizontalAlignment="Left" Margin="112,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="3" HorizontalAlignment="Left" Margin="153,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="4" HorizontalAlignment="Left" Margin="196,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="5" HorizontalAlignment="Left" Margin="237,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="6" HorizontalAlignment="Left" Margin="278,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="7" HorizontalAlignment="Left" Margin="319,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="8" HorizontalAlignment="Left" Margin="360,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="9" HorizontalAlignment="Left" Margin="403,3,0,0" VerticalAlignment="Top" Width="41" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="0" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="1" HorizontalAlignment="Left" Margin="0,69,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="2" HorizontalAlignment="Left" Margin="0,109,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="3" HorizontalAlignment="Left" Margin="0,149,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="5" HorizontalAlignment="Left" Margin="0,227,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="6" HorizontalAlignment="Left" Margin="0,267,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="7" HorizontalAlignment="Left" Margin="0,307,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="8" HorizontalAlignment="Left" Margin="0,347,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="9" HorizontalAlignment="Left" Margin="0,384,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+        <Label Content="4" HorizontalAlignment="Left" Margin="0,187,0,0" VerticalAlignment="Top" Width="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40"/>
+
+
+    </Grid>
+</Window>
