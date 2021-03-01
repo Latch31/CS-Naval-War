@@ -116,8 +116,8 @@ namespace CS_Naval_War
         }
         
         //Manage the shot system
-        public void ShootBoardShoot(String coordonate){
-            this.boardTab[coordonate[1]-48, coordonate[0]-48] = 1;
+        public void ShootBoardShoot(String coordonate, int number){
+            this.boardTab[coordonate[1]-48, coordonate[0]-48] = number;
         }
 
         public int ShootTake(String coordonate){
