@@ -108,8 +108,6 @@ namespace CS_Naval_War{
                         return false;
                     }
                 } else {
-                    Console.WriteLine("JE SUIS LA !!!! {0}", idBoatHit);
-                    Console.ReadKey();
                     return true;
                 }
             } else {
