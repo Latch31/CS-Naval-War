@@ -12,21 +12,43 @@ namespace CS_Naval_War{
         public void StartGame(){
             bool turn = false;
             bool alive  = true;
+            IPlayer player1;
+            IPlayer player2;
+            String gameType;
             
             boats.Add(new Board());
             boats.Add(new Board());
             shoot.Add(new Board());
             shoot.Add(new Board());
-            
-            Console.WriteLine("-- Please enter the name for the Player 1--");
-            Player player1 = new Player(Console.ReadLine());
-            player1.boatPlace = idBoatP1;
-            player1.shootBoard = shoot[0];
+            bool patate;
+            do
+            {
+                Console.WriteLine(" Party type : \n1 : Player vs IA\n2 : Player vs Player");
+                gameType = Console.ReadLine();
+                if (gameType[0] == '1' || gameType[0] == '2')
+                {
+                    patate = true;
+                } else
+                {
+                    patate = false;
+                }
+            }while(!patate);
 
-            Console.WriteLine("-- Please enter the name for the Player 2--");
-            Player player2 = new Player(Console.ReadLine());
-            player2.boatPlace = idBoatP2;
-            player2.shootBoard = shoot[1];
+
+            Console.WriteLine("-- Player 1 name --");
+            player1 = new ConsolePlayer(Console.ReadLine());
+            player1.BoatIdCopy(idBoatP1);
+            player1.ShootCopy(shoot[0]);
+            if ( gameType[0] == '1'){
+                player2 = new IAPlayer();
+                player2.BoatIdCopy(idBoatP2);
+                player2.ShootCopy(shoot[1]);
+            } else {
+                Console.WriteLine("-- Player 2 name --");
+                player2 = new ConsolePlayer(Console.ReadLine());
+                player2.BoatIdCopy(idBoatP2);
+                player2.ShootCopy(shoot[1]);
+            }
 
             PlayPlacement(player1, 0, idBoatP1);
             PlayPlacement(player2, 1, idBoatP2);
@@ -42,14 +64,15 @@ namespace CS_Naval_War{
             }while(alive); // to be change with win condition
 
             if ( turn ){
-                Console.WriteLine("-- {0} WIN !!! --", player1.name);
+                Console.WriteLine("-- {0} WIN !!! --", player1.getPlayerName());
             } else {
-                Console.WriteLine("-- {0} WIN !!! --", player2.name);
+                Console.WriteLine("-- {0} WIN !!! --", player2.getPlayerName());
             }
         }
-        public void PlayPlacement(Player player, int nbPlayer, Dictionary<int, Boat> boatPlayer){   
+
+        public void PlayPlacement(IPlayer player, int nbPlayer, Dictionary<int, Boat> boatPlayer){   
             Boat tempBoat;
-            String tempCoordonate;
+            String tempCoordinate;
             Board.direcEnum tempDirection;
             Dictionary<int, Boat.boatEnum> boatList = new Dictionary<int, Boat.boatEnum>();
             boatList.Add(0, Boat.boatEnum.CARRIER);
@@ -59,34 +82,34 @@ namespace CS_Naval_War{
             boatList.Add(4, Boat.boatEnum.DESTROYER);
             
             do{
-                player.boatBoard.printTab();
+                boats[nbPlayer].printTab();
                 tempBoat = player.ChooseBoat(boatList);
                 do{
-                    tempCoordonate = player.ChooseCoordonate();
+                    tempCoordinate = player.ChooseCoordinate();
                     tempDirection  = player.ChooseDirection();
-                    if (!player.boatBoard.CheckPlacement(tempCoordonate[0]-48, tempCoordonate[1]-48, tempBoat.size, tempDirection)){
-                        Console.WriteLine("- /!\\ Error detected, please retry with another coordonate or direction /!\\ -");
+                    if (!boats[nbPlayer].CheckPlacement(tempCoordinate[0]-48, tempCoordinate[1]-48, tempBoat.size, tempDirection)){
+                        Console.WriteLine("- /!\\ Error detected, please retry with another coordinate or direction /!\\ -");
                     }
-                }while(!player.boatBoard.CheckPlacement(tempCoordonate[0]-48, tempCoordonate[1]-48, tempBoat.size, tempDirection));
-                boats[nbPlayer].Placement(tempCoordonate[0]-48, tempCoordonate[1]-48, tempBoat, tempDirection, nbBoatPlace);
+                }while(!boats[nbPlayer].CheckPlacement(tempCoordinate[0]-48, tempCoordinate[1]-48, tempBoat.size, tempDirection));
+                boats[nbPlayer].Placement(tempCoordinate[0]-48, tempCoordinate[1]-48, tempBoat, tempDirection, nbBoatPlace);
                 boatPlayer.Add(nbBoatPlace, tempBoat);
-                player.boatBoard.Placement(tempCoordonate[0]-48, tempCoordonate[1]-48, tempBoat, tempDirection, nbBoatPlace);
+                player.GetBoatBoard().Placement(tempCoordinate[0]-48, tempCoordinate[1]-48, tempBoat, tempDirection, nbBoatPlace);
                 nbBoatPlace++;
             }while(boatList.Count != 0);
         }
 
-        public bool PlayShoot (Player player, int nbPlayerShooting, int nbPlayerTakeShoot, Dictionary<int, Boat> boatPlayer){ // return true if the player still alive after the shot
-            String shootCoordonate;
+        public bool PlayShoot (IPlayer player, int nbPlayerShooting, int nbPlayerTakeShoot, Dictionary<int, Boat> boatPlayer){ // return true if the player still alive after the shot
+            String shootCoordinate;
             int idBoatHit;
             Boat boatHit;
 
             // have to change the player !!!!!
-            Console.WriteLine("{0} where you have already shoot", player.name);
+            Console.WriteLine("{0} where you have already shoot", player.getPlayerName());
             shoot[nbPlayerShooting].printTab();
-            shootCoordonate = player.WhereToShot();
-            if( shoot[nbPlayerShooting].ShootTake(shootCoordonate) != 1 && boats[nbPlayerTakeShoot].ShootTake(shootCoordonate) != 0){
-                idBoatHit = boats[nbPlayerTakeShoot].ShootTake(shootCoordonate);
-                shoot[nbPlayerShooting].ShootBoardShoot(shootCoordonate);
+            shootCoordinate = player.WhereToShot();
+            if( shoot[nbPlayerShooting].ShootTake(shootCoordinate) != 1 && boats[nbPlayerTakeShoot].ShootTake(shootCoordinate) != 0){
+                idBoatHit = boats[nbPlayerTakeShoot].ShootTake(shootCoordinate);
+                shoot[nbPlayerShooting].ShootBoardShoot(shootCoordinate, 8);
                 // boat gestion
 
                 if (boatPlayer.TryGetValue(idBoatHit, out boatHit)){
@@ -111,107 +134,12 @@ namespace CS_Naval_War{
                     return true;
                 }
             } else {
+                shoot[nbPlayerShooting].ShootBoardShoot(shootCoordinate, 1);
                 Console.WriteLine("Miss !");
                 Console.ReadKey();
                 Console.Clear();
                 return true;
             }
         }
-        
-
-
-
-
-
-
-
-
-
-
-// NOT TO SEE OLD CODE, i keep it when i have to do the part play
-
-/*
-        public void startGame(Board p1, Board p2)
-        {
-            bool win = false; // know if someone win
-            bool turn = false;  // name of the player to play  
-            if ( !p1.bInitialise || !p2.bInitialise )
-            {
-                Console.WriteLine(" one of the 2 player don't place his ship !");
-            }
-            else
-            {
-                Console.WriteLine("------ Game Start ------");
-                while (!win)
-                {
-                    turn = !turn;
-                    if ( turn )
-                    {
-                        win = playturn(p1, p2);
-                    }
-                    else
-                    {
-                        win = playturn(p2, p1);
-                    }
-                    if (!win)
-                    {
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-                }
-                if ( turn )
-                {
-                    Console.WriteLine("--- {0} WIN !!! ---", p1.pName);
-                }
-                else
-                {
-                    Console.WriteLine("--- {0} WIN !!! ---", p2.pName);
-                }
-                Console.WriteLine("------ Game Over ------");
-                
-            }
-        }
-
-        private bool playturn(Board pTurn, Board pAdv)
-        {
-            Boolean touch = false;
-            Boolean shotAppend = false;
-            
-            Console.WriteLine("- {0} is your turn ! -", pTurn.pName);
-            do
-            {
-                Console.WriteLine("Where you already shoot");
-                pTurn.printTab(pTurn.bShoot);
-                Console.WriteLine("Choose where to shot");
-                String entry = Console.ReadLine();
-                if (entry.Length == 2) // check if the entry comporte 2 caracter
-                {
-                    //check the interval value of the entry
-                    if ((entry[0] - 48) >= 0 || (entry[0] - 48) <= 10 || (entry[1] - 48) >= 0 || (entry[1] - 48) <= 10 ) 
-                    {
-                        int x = entry[0] - 48;
-                        int y = entry[1] - 48;
-                        touch = pAdv.getShot(x, y);
-                        pTurn.shoot(x, y, touch);
-                        shotAppend = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error Entry not on board, please retry");
-                    }
-                }
-            }while(!shotAppend);
-
-            if ( touch )
-            {
-                Console.WriteLine("Touche !!!");
-                return pAdv.checkAlive();
-            }
-            else
-            {
-                Console.WriteLine("Miss");
-                return false;
-            }
-        }*/
     }
 }
